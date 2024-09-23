@@ -1,5 +1,4 @@
 # Triangle Project Code.
-
 # Triangle analyzes the lengths of the sides of a triangle
 # (represented by a, b and c) and returns the type of triangle.
 #
@@ -15,15 +14,22 @@
 #
 def triangle(a, b, c)
   # WRITE THIS CODE
-  if a != b and a != c and b =! c
+  if [a,b,c].any?{|x| x <= 0}
+    raise TriangleError
+  end
+  if a+b+c - [a,b,c].max <= [a,b,c].max
+    raise TriangleError
+  end
+
+  if a != b && a != c && b != c
     :scalene
-  else if a = b and a = c and b = c
+  elsif a == b && a == c
     :equilateral
   else
     :isosceles
   end
 end
 
-# Error class used in part 2.  No need to change this code.
+# Error class used in part 2. No need to change this code.
 class TriangleError < StandardError
 end
